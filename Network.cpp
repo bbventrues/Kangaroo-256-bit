@@ -862,7 +862,7 @@ bool Kangaroo::ConnectToServer(SOCKET *retSock) {
   int flag = 1;
   struct protoent *p;
   p = getprotobyname("tcp");
-  if(setsockopt(sock,p->p_proto,TCP_NODELAY,(char *)&flag,sizeof(flag)) == -1) {
+  if(setsockopt(sock,IPPROTO_TCP,TCP_NODELAY,(char *)&flag,sizeof(flag)) == -1) {
     lastError = "Socket error: setsockopt error TCP_NODELAY";
     close_socket(sock);
     return false;
